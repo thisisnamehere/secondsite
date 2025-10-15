@@ -1,0 +1,36 @@
+# Systemd service файл для запуска без PM2
+# Копировать в /etc/systemd/system/med-inventory.service
+
+[Unit]
+Description=Medical Inventory API Server
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/med-inventory/server
+Environment=NODE_ENV=production
+EnvironmentFile=/var/www/med-inventory/server/.env
+ExecStart=/usr/bin/node src/index.js
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=med-inventory
+
+# Ограничения безопасности
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/site2
+
+[Install]
+WantedBy=multi-user.target
+
+# Использование:
+# sudo systemctl daemon-reload
+# sudo systemctl enable med-inventory
+# sudo systemctl start med-inventory
+# sudo systemctl status med-inventory
+# journalctl -u med-inventory -f

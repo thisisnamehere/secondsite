@@ -1,0 +1,28 @@
+{
+  "name": "med-inventory-server",
+  "version": "1.0.0",
+  "description": "API сервер для учёта медицинского инструмента",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node src/seed.js",
+    "migrate": "node src/migrate.js"
+  },
+  "keywords": ["medical", "inventory", "api", "express", "sqlite"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.0.1",
+    "sqlite3": "^5.1.7",
+    "dotenv": "^16.4.5",
+    "cors": "^2.8.5",
+    "helmet": "^8.0.0",
+    "compression": "^1.7.4",
+    "exceljs": "^4.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
